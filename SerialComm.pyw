@@ -67,13 +67,6 @@ class SerialComm:
 		self.commToSend.pack(side = LEFT, expand = True, fill = BOTH)
 		Button(self.sendPane, text = u"发送", command = self.onSend).pack(side = LEFT) #发送按钮
 
-		self.consolePane = PanedWindow(self.root) #终端窗
-		self.consolePane.pack(fill = BOTH, expand = True)
-		Label(self.consolePane, text = u"命令: ").pack(side = LEFT)
-		self.commandToExecute = Entry(self.consolePane) #终端指令窗
-		self.commandToExecute.pack(side = LEFT, expand = True, fill = BOTH)
-		Button(self.consolePane, text = u"执行", command = self.onExecute).pack(side = LEFT) #执行按钮
-
 		while True:
 			if not self.openedDevice.is_open:
 				self.scanDevice()
@@ -127,12 +120,9 @@ class SerialComm:
 			for byte in hexStream:
 				self.openedDevice.write(chr(int(byte, 16)))
 		else:
-			self.openedDevice.write(self.commToSend.get())
+			self.openedDevice.write(self.commToSend.get().encode())
 		if self.isCRLF.get() == 1:
-			self.openedDevice.write("\n\t")
-
-	def onExecute(self):
-		eval(self.commandToExecute.get())
+			self.openedDevice.write(b"\n\t")
 
 	def onExit(self):
 		self.root.destroy()
