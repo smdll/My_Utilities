@@ -41,3 +41,13 @@ Requirements: pySerial
 ##### PasswordGenerator.pyw
 
 A tool to generate password with some rules.
+
+##### GetClipboard.py
+
+A tool to get contents from clipboard
+
+##### FileMonitor.py
+
+Simple tool to watch file changes in a specific path.
+
+Requirements: pyinotify
