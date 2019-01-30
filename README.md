@@ -41,3 +41,9 @@ Requirements: pySerial
 ##### PasswordGenerator.pyw
 
 A tool to generate password with some rules.
+
+##### RmPicDups.py
+
+This script is used to remove duplicated pictures from a folder and it's sub folders, based on image average hashing.
+
+Requirements: imagehash
