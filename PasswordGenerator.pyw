@@ -1,13 +1,10 @@
 from tkinter import *
 import random, time, math
 
-def onCalEntropy(c):
-	result = -1;
-	if(len(c)>0):
-		result = 0;
-	for x in c:
-		result += ord(x)*math.log(ord(x), 2)
-	return result
+def onCalEntropy(string):
+	prob = [ float(string.count(c)) / len(string) for c in dict.fromkeys(list(string)) ]
+	entropy = - sum([ p * math.log(p) / math.log(2.0) for p in prob ])
+	return float("{0:.2f}".format(entropy))
 
 def onGenerate():
 	pool = ""
@@ -21,7 +18,8 @@ def onGenerate():
 		pool += printable["symbol"]
 	random.seed(time.time())
 	randStr = "".join(random.choices(pool, k = pwLength.get()))
-	pwEntry.insert (0, randStr)
+	pwEntry.delete(0, END)
+	pwEntry.insert(0, randStr)
 	pwEntropy.set(str(onCalEntropy(randStr)))
 
 def onCopy():
@@ -48,6 +46,7 @@ pwEntropy = StringVar(root)
 isUpperCase.set(1)
 isLowerCase.set(1)
 isDigit.set(1)
+pwEntropy.set("0.00")
 
 pane1 = PanedWindow(root)
 pane1.pack(expand = True, fill = BOTH)

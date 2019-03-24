@@ -41,7 +41,7 @@ def extract(path):
 						outfile = open('%s_extracted\\%d.jpg'%(path, name), 'wb')
 						for i in content:
 							outfile.write(i)
-						print '%d.jpg saved'%name
+						print('%d.jpg saved'%name)
 						outfile.close()
 						name += 1
 

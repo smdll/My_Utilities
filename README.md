@@ -42,8 +42,20 @@ Requirements: pySerial
 
 A tool to generate password with some rules.
 
+<<<<<<< HEAD
 ##### RmPicDups.py
 
 This script is used to remove duplicated pictures from a folder and it's sub folders, based on image average hashing.
 
 Requirements: imagehash
+=======
+##### GetClipboard.py
+
+A tool to get contents from clipboard
+
+##### FileMonitor.py
+
+Simple tool to watch file changes in a specific path.
+
+Requirements: pyinotify
+>>>>>>> cc1ff6e96fe01aed4b30f513ccf8ca5f70bf5293

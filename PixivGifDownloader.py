@@ -4,11 +4,11 @@ import imageio, os, urllib2, re, zipfile, sys
 
 def get_file(id):
 	# Fetching the description page
-	print 'Collecting %s'%id
+	print('Collecting %s'%id)
 	try:
 		html = urllib2.urlopen('https://www.pixiv.net/member_illust.php?mode=medium&illust_id=%s'%id).read()
 	except:
-		print 'Site unreachable or this post has been removed'
+		print('Site unreachable or this post has been removed')
 		return 0
 	url, fps = get_param(html)
 
@@ -20,7 +20,7 @@ def get_file(id):
 	file = open('.\\%s.zip'%id, 'wb')
 	file.write(content)
 	file.close()
-	print 'Done collecting'
+	print('Done collecting')
 	return fps
 
 def get_param(content):
@@ -39,7 +39,7 @@ def create_gif(id, fps):
 	zipFile.close()
 
 	# Merging files into a gif file
-	print 'Making gif %s.gif'%id
+	print('Making gif %s.gif'%id)
 	frames = []
 	image_list = os.listdir('.\\%s\\'%id)
 	for image_name in image_list:
@@ -49,7 +49,7 @@ def create_gif(id, fps):
 	# Remove temporary files
 	os.system('rmdir /Q /S .\\%s'%id)
 	os.system('del %s.zip'%id)
-	print 'Done making gif'
+	print('Done making gif')
 
 def check_file(id):
 	# Check if this id has already been downloaded
@@ -62,7 +62,7 @@ def check_file(id):
 def main():
 	id = raw_input('Input id:')
 	if check_file(id):
-		print 'File exists, exiting.'
+		print('File exists, exiting.')
 		return
 	fps = get_file(id)
 	if fps == 0:
